@@ -29,5 +29,13 @@ namespace Dem0n13.XmlValidator.Tests
             var tokens = _lexer.Tokenize(input);
             Assert.AreEqual(10, tokens.Count());
         }
+
+        [Test]
+        public void BadTag()
+        {
+            const string input = "</html";
+            var tokens = _lexer.Tokenize(input);
+            Assert.AreEqual(3, tokens.Count());
+        }
     }
 }

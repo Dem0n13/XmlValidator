@@ -31,6 +31,7 @@ namespace Dem0n13.XmlValidator
                         break;
                     default:
                         yield return TokenizeTagName(text, ref index);
+                        index--; // переставляем на предыдущий символ
                         break;
                 }
             }
@@ -48,15 +49,12 @@ namespace Dem0n13.XmlValidator
                     case '>':
                         if (builder.Length == 0)
                             throw new Exception("Empty tag name");
-                        index--; // переставляем на предыдущий символ
                         return new TagNameToken(builder.ToString());
                     default:
                         builder.Append(chars[index]);
                         break;
                 }
             }
-
-            index--; // переставляем на предыдущий символ
             return new TagNameToken(builder.ToString());
         }
     }
